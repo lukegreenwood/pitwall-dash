@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-const title = "f1-dash | Formula 1 live timing";
+const title = "Pitwall Dash | Live race timing";
 const description =
-	"Experience live telemetry and timing data from Formula 1 races. Get insights into leaderboards, tire choices, gaps, lap times, sector times, team radios, and more.";
+	"Live telemetry and timing data for race weekends. Leaderboards, tyre choices, gaps, lap times, sector times, team radios, and more.";
 
-const url = "https://f1-dash.com";
+const url = "https://pitwalldash.com";
 
 export const metadata: Metadata = {
 	generator: "Next.js",
@@ -14,17 +14,17 @@ export const metadata: Metadata = {
 	title,
 	description,
 
-	icons: "https://f1-dash.com/favicon.png",
+	icons: `${url}/favicon.png`,
 
 	openGraph: {
 		title,
 		description,
 		url,
 		type: "website",
-		siteName: "F1 Realtime Dashboard",
+		siteName: "Pitwall Dash",
 		images: [
 			{
-				alt: "Realtime Formula 1 Dashboard",
+				alt: "Pitwall Dash - real-time race telemetry and timing",
 				url: `${url}/og-image.png`,
 				width: 1200,
 				height: 630,
@@ -33,15 +33,13 @@ export const metadata: Metadata = {
 	},
 
 	twitter: {
-		site: "@Slowlydev",
 		title,
 		description,
-		creator: "@Slowlydev",
 		card: "summary_large_image",
 		images: [
 			{
 				url: `${url}/twitter-image.png`,
-				alt: "Realtime Formula 1 Dashboard",
+				alt: "Pitwall Dash - real-time race telemetry and timing",
 				width: 1200,
 				height: 630,
 			},
@@ -52,15 +50,15 @@ export const metadata: Metadata = {
 
 	referrer: "strict-origin-when-cross-origin",
 
-	keywords: ["Formula 1", "f1 dashboard", "realtime telemetry", "f1 timing", "live updates"],
+	keywords: ["race dashboard", "live timing", "realtime telemetry", "motorsport timing", "live updates"],
 
-	creator: "Slowlydev",
-	publisher: "Slowlydev",
+	creator: "Luke Greenwood",
+	publisher: "Luke Greenwood",
 	authors: [{ name: "Slowlydev", url: "https://slowly.dev" }],
 
 	appleWebApp: {
 		capable: true,
-		title: "f1-dash",
+		title: "Pitwall Dash",
 		statusBarStyle: "black-translucent",
 	},
 
@@ -74,10 +72,6 @@ export const metadata: Metadata = {
 
 	alternates: {
 		canonical: url,
-	},
-
-	verification: {
-		google: "hKv0h7XtWgQ-pVNVKpwwb2wcCC2f0tBQ1X1IcDX50hg",
 	},
 
 	manifest: "/manifest.json",

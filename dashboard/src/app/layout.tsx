@@ -23,6 +23,12 @@ export default function RootLayout({ children }: Props) {
 			<head>
 				<EnvScript />
 
+				<Script
+					defer
+					src="https://analytics.lgrp.dev/script.js"
+					data-website-id="1b004f55-fc22-4bde-b81e-65e6760faa97"
+				/>
+
 				{env.TRACKING_ID && env.TRACKING_URL && (
 					<>
 						<Script strategy="afterInteractive" data-site-id={env.TRACKING_ID} src={env.TRACKING_URL} />

@@ -1,17 +1,16 @@
 name: release
 
-# runs on tag push and develop branch push
-
 on:
   push:
     branches:
-      - develop
+      - main
     tags:
       - v*
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
-  USER: slowlydev
+  USER: lukegreenwood
 
 jobs:
   build-and-push:
@@ -19,7 +18,13 @@ jobs:
 
     strategy:
       matrix:
-        image: [f1-dash, f1-dash-api, f1-dash-realtime]
+        include:
+          - target: f1-dash
+            image: pitwall-dash
+          - target: f1-dash-api
+            image: pitwall-dash-api
+          - target: f1-dash-realtime
+            image: pitwall-dash-realtime
 
     permissions:
       contents: read
@@ -49,14 +54,15 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.USER }}/${{ matrix.image }}
           tags: |
-            type=ref,event=branch,branch=develop,value=dev
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha
             type=semver,pattern={{version}}
 
       - name: Build and push
         id: push
         uses: docker/bake-action@v6.6.0
         with:
-          targets: ${{ matrix.image }}
+          targets: ${{ matrix.target }}
           push: true
           provenance: true
           files: |

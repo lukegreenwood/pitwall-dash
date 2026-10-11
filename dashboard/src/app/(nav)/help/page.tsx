@@ -21,13 +21,13 @@ export default function HelpPage() {
 		<div>
 			<h1 className="my-4 text-3xl">Help Page</h1>
 
-			<p>This page explains some core features and UI elements of f1-dash.</p>
+			<p>This page explains some core features and UI elements of Pitwall Dash.</p>
 
 			<h2 className="my-4 text-2xl">Colors</h2>
 
 			<p>
-				A core element in the UI of f1-dash, inspired by official Formula 1 graphics, is the color-coding system used
-				for lap times, sector times, mini sectors, and gaps. Each color has a meaning in the context of lap times,
+				A core element in the UI of Pitwall Dash, inspired by official Formula 1 graphics, is the color-coding system
+				used for lap times, sector times, mini sectors, and gaps. Each color has a meaning in the context of lap times,
 				sector times, or mini sectors.
 			</p>
 
@@ -201,16 +201,16 @@ export default function HelpPage() {
 			<h2 className="my-4 text-2xl">Delay Control</h2>
 
 			<p className="mb-4">
-				When using f1-dash while watching on TV, F1TV, or your favorite streaming platform, you may notice that f1-dash
-				updates much earlier than your stream. This can make exciting race events less interesting, as you see them on
-				f1-dash before experiencing them on your stream. This is where the delay control comes in.
+				When using Pitwall Dash while watching on TV, F1TV, or your favorite streaming platform, you may notice that
+				Pitwall Dash updates much earlier than your stream. This can make exciting race events less interesting, as you
+				see them on Pitwall Dash before experiencing them on your stream. This is where the delay control comes in.
 			</p>
 
 			<p className="mb-4">
-				With delay control, you can set a delay in seconds to make f1-dash update later than it normally would. So
-				setting a 30-second delay will cause f1-dash to update 30 seconds later than it normally would.
+				With delay control, you can set a delay in seconds to make Pitwall Dash update later than it normally would. So
+				setting a 30-second delay will cause Pitwall Dash to update 30 seconds later than it normally would.
 				<br />
-				You can use this to sync your stream with f1-dash.
+				You can use this to sync your stream with Pitwall Dash.
 			</p>
 
 			<Note className="mb-4">

@@ -5,19 +5,12 @@ export default function Footer() {
 		<footer className="my-8 text-sm text-zinc-500">
 			<div className="mb-4 flex flex-wrap gap-2">
 				<p>
-					Made with ♥ by <TextLink website="https://slowly.dev">Slowly</TextLink>.
+					Built on <TextLink website="https://github.com/slowlydev/f1-dash">f1-dash</TextLink> by{" "}
+					<TextLink website="https://slowly.dev">Slowly</TextLink>.
 				</p>
 
 				<p>
-					<TextLink website="https://www.buymeacoffee.com/slowlydev">Buy me a coffee</TextLink> to support me.
-				</p>
-
-				<p>
-					Contribute on <TextLink website="https://github.com/slowlydev/f1-dash">GitHub</TextLink>.
-				</p>
-
-				<p>
-					Check out the Community <TextLink website="https://discord.gg/unJwu66NuB">Discord</TextLink>.
+					Source on <TextLink website="https://github.com/lukegreenwood/pitwall-dash">GitHub</TextLink> (AGPL-3.0).
 				</p>
 
 				<p>

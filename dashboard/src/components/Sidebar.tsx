@@ -148,10 +148,8 @@ export default function Sidebar({ connected }: Props) {
 					<p className="mt-4 p-2 text-sm text-zinc-500">Links</p>
 
 					<div className="flex flex-col gap-1">
-						<Item target="_blank" item={{ href: "https://github.com/slowlydev/f1-dash", name: "Github" }} />
-						<Item target="_blank" item={{ href: "https://discord.gg/unJwu66NuB", name: "Discord" }} />
-						<Item target="_blank" item={{ href: "https://buymeacoffee.com/slowlydev", name: "Buy me a coffee" }} />
-						<Item target="_blank" item={{ href: "https://github.com/sponsors/slowlydev", name: "Sponsor me" }} />
+						<Item target="_blank" item={{ href: "https://github.com/lukegreenwood/pitwall-dash", name: "Github" }} />
+						<Item target="_blank" item={{ href: "https://github.com/slowlydev/f1-dash", name: "Original f1-dash" }} />
 					</div>
 				</nav>
 			</motion.div>

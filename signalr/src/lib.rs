@@ -1,4 +1,4 @@
-use std::{env, str::FromStr};
+use std::{env, str::FromStr, time::Duration};
 
 use futures::{SinkExt, Stream};
 use reqwest::{
@@ -9,13 +9,15 @@ use serde::{Deserialize, Serialize, de::DeserializeOwned};
 use serde_json::Value;
 use tokio_stream::StreamExt;
 use tokio_tungstenite::tungstenite::{Message, client::IntoClientRequest, http::Request};
-use tracing::{debug, error, info};
+use tracing::{debug, error, info, warn};
 use uuid::Uuid;
 
 const RECORD_SEPARATOR: &str = "\u{001E}";
 
 const INVOCATION: i32 = 1;
 const COMPLETION: i32 = 3;
+
+const IDLE_TIMEOUT: Duration = Duration::from_secs(60);
 
 #[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -261,9 +263,28 @@ pub struct UpdateArgs {
     pub timestamp: String,
 }
 
+fn messages(client: SignalrClient) -> impl Stream<Item = Message> {
+    Box::pin(
+        client
+            .stream
+            .timeout(IDLE_TIMEOUT)
+            .map_while(|message| match message {
+                Ok(Ok(message)) => Some(message),
+                Ok(Err(err)) => {
+                    error!(?err, "ws error");
+                    None
+                }
+                Err(_) => {
+                    warn!(timeout = ?IDLE_TIMEOUT, "no ws messages received, closing stream");
+                    None
+                }
+            }),
+    )
+}
+
 pub fn listen(client: SignalrClient) -> impl Stream<Item = Vec<UpdateArgs>> {
-    client.stream.filter_map(|message| match message {
-        Ok(Message::Text(txt)) => {
+    messages(client).filter_map(|message| match message {
+        Message::Text(txt) => {
             let messages = split_messages(&txt);
 
             if messages.is_empty() {
@@ -300,21 +321,13 @@ pub fn listen(client: SignalrClient) -> impl Stream<Item = Vec<UpdateArgs>> {
 
             Some(results)
         }
-        Ok(_) => None,
-        Err(err) => {
-            error!(?err, "ws error");
-            None
-        }
+        _ => None,
     })
 }
 
 pub fn listen_raw(client: SignalrClient) -> impl Stream<Item = String> {
-    client.stream.filter_map(|message| match message {
-        Ok(Message::Text(txt)) => Some(txt.to_string()),
-        Ok(_) => None,
-        Err(err) => {
-            error!(?err, "ws error");
-            None
-        }
+    messages(client).filter_map(|message| match message {
+        Message::Text(txt) => Some(txt.to_string()),
+        _ => None,
     })
 }
